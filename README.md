@@ -8,9 +8,6 @@ About
 ### License
   To see the full text of the license, see the `LICENSE` file.
 
-Usage
-=====
-
 Contributing
 ============
 
