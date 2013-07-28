@@ -1,0 +1,19 @@
+#!/usr/bin/env python
+
+import sys
+
+if (len(sys.argv) - 1) == 0:
+    print >> sys.stderr, ("%s: [hex-string] [file]" % (sys.argv[0]))
+    sys.exit(0)
+
+hexstring = sys.argv[1]
+file = sys.argv[2]
+
+string = ""
+hexstring = [hexstring[hexidx:hexidx + 2]
+             for hexidx in range(0, len(hexstring), 2)]
+for hex in hexstring:
+    string += "\\x%s" % (hex)
+
+with open(file, "w+") as f:
+    print >> f, string.decode('string_escape'),
