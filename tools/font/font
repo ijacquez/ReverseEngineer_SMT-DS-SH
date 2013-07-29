@@ -1,0 +1,111 @@
+#!/usr/bin/env python
+
+import os
+import sys
+import png
+import optparse
+
+MIN_NUM_ARGS = 1
+
+parser = optparse.OptionParser()
+parser.set_defaults(extract = False, convert = False)
+
+parser.add_option('-e', action = 'store_true', dest = 'extract')
+parser.add_option('-c', action = 'store_true', dest = 'convert')
+
+(options, args) = parser.parse_args()
+
+WIDTH = 16
+HEIGHT = 16
+
+def expand_1bpp_to_8bpp(byte):
+    return [1 if ((byte & (1 << bit)) != 0) else 0 for bit in range(7, -1, -1)]
+
+def compress_8bpp_to_1bpp(row):
+    pass
+
+def extract(font_file, width, char_offset, char_length, out_png_file):
+    """
+    Convert a 1-BPP font file to a PNG image
+    """
+
+    def glyph(character):
+        bitmap = []
+        row = []
+
+        nrow = 0
+        ncolumn = 0
+
+        for byte in character:
+            expanded = expand_1bpp_to_8bpp(int(byte.encode('hex'), 16))
+            row[len(row):] = expanded
+
+            ncolumn += 1
+            if (ncolumn % (WIDTH / 8)) == 0:
+                yield row
+
+                ncolumn = 0
+                nrow += 1
+                row = []
+
+    bitmap = []
+    palette = [(0x00, 0x00, 0x00), (0xFF, 0xFF, 0xFF)]
+
+    try:
+        length = os.path.getsize(font_file)
+
+        font = None
+        with open(font_file, "rb") as fin:
+            fin.seek(char_offset << 5)
+            font = fin.read(length)
+    except IOError:
+        print >> sys.stderr, ("File %s does not exist" % (font_file))
+
+    characters = []
+
+    while len(font) > 0:
+        characters.append(font[:(WIDTH * HEIGHT) / 8])
+        font = font[(WIDTH * HEIGHT) / 8:]
+
+    # List of glyphs where each glyph is a 2D presentation where each
+    # sublist is a row
+    characters = [[row for row in glyph(character)] for character in characters]
+
+    # Group WIDTH glyphs into a list with sublist of WIDTH glyphs
+    characters = [characters[i:i + width] for i in range(0, len(characters), width)]
+
+    for character in characters:
+        for row in zip(*character):
+            # Flatten
+            bitmap.append([elem for subl in list(row) for elem in subl])
+
+    with open(out_png_file, "wb+") as fout:
+        w = png.Writer(width = (width * WIDTH), height = len(bitmap),
+                       bitdepth = 8, palette = palette)
+        w.write(fout, bitmap)
+
+def convert(png_file, out_font_file):
+    print "convert"
+
+def usage():
+    print >> sys.stderr, ("%s: [-e font-file width character-offset character-length out-png-file" \
+                              "| -c png-file out-font-file]"
+                          % (sys.argv[0]))
+    sys.exit(-1)
+
+if __name__ == '__main__':
+    if options.extract:
+        if len(args) < 5:
+            usage()
+
+        extract(font_file = args[0],
+                width = int(args[1]),
+                char_offset = int(args[2]),
+                char_length = int(args[3]), out_png_file = args[4])
+    elif options.convert:
+        if len(args) < 2:
+            usage()
+
+        convert(png_file = args[0], out_font_file = args[1])
+    else:
+        usage()
