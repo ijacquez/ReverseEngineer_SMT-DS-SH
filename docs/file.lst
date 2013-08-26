@@ -1,0 +1,105 @@
+0               First executable
+9_LOAD.BIN      Executable
+9_TITLE.BIN     Executable
+A_01.BIN        Seems to have game text
+A_02.BIN        Seems to have game text
+A_FONT16.BIN    Font
+A_LOGO.BIN      ?
+A_OP.BIN        ?
+A_PANEL.BIN     ?
+A_TITBG.BIN     ?
+A_TITLE.BIN     Executable
+A_TITSPR.BIN    ?
+CDDA1           ?
+DEVILCG.BIN     ?
+DGA_CBG.BIN     ?
+DGB_MAP.BIN     Executable (has script text)
+DGC_CMP.BIN     Executable (has script text)
+                Has reference to DGN_3DD.BIN (dungeon?)
+DGN_3DD.BIN     Executable 
+                Has references to DGC_CMP.BIN (menu?) and DVL_BAT1.BIN (battle?)
+DGO_BMP.BIN     ?
+DGP_BFP.BIN     ?
+DGQ_MES.BIN     ?
+DS2SE.BIN       ?
+DS2SE.SEQ       ?
+DS2SOUND.BIN    ?
+DVL_BAT1.BIN    Executable
+                Has reference to DGN_3DD.BIN (dungeon?)
+                Has a different way of writing text on screen
+DVL_BAT2.BIN    Data for DVL_BAT1.BIN
+DVL_BAT3.BIN    Data for DVL_BAT1.BIN
+DZ_ST.BIN       Executable
+EVE_KAN.BIN     ?
+EVE_MAIN.BIN    Holds table of offsets for EVENT.BIN
+EVE_MES.BIN     ?
+EVE_MOV.BIN     Executable with a special header; different from the rest
+EVE_NAME.BIN    Executable with a special header
+EVE_SAVE.BIN    Executable
+EVE_TM.BIN      Executable with a special header
+EVENT.BIN       Events
+GOMADEN.BIN     Executable
+GOMADEN.EVE     Event
+GOUMA.CHR       ?
+I_CB.CHR        ?
+I_CB2.CHR       ?
+I_CR.CHR        ?
+I_HEAL.CHR      ?
+I_MAG.CPK       ?
+I_SHOP.EVE      Event
+I_SHOP01.EVE    Event
+I_SHOP02.EVE    Event
+I_SHOP03.EVE    Event
+I_SHOP04.EVE    Event
+I_SHOP05.EVE    Event
+I_SHOP06.EVE    Event
+I_SHOP07.EVE    Event
+I_SHOP08.EVE    Event
+I_SHOP09.EVE    Event
+INS.BIN         Executable (has script text)
+INST.BIN        Executable (has script text)
+KEN.TXB         ?
+KENCPK.BIN      ?
+KYU_PET.BIN     ?
+KYU1.BIN        ?
+KYU2.BIN        ?
+KYU3.BIN        ?
+M00_2D.BIN      ?
+M01LINK.BIN     ?
+M02LINK.BIN     ?
+M03LINK.BIN     ?
+M04LINK.BIN     ?
+M05LINK.BIN     ?
+M06LINK.BIN     ?
+MESS.BIN        ?
+MIX.DAT         ?
+SWDIMG.BIN      ?
+SWDNAME.CHR     ?
+TALK00.EVE      Event
+TALK01.EVE      Event
+TALK02.EVE      Event
+TALK03.EVE      Event
+TALK04.EVE      Event
+TALK05.EVE      Event
+TALK06.EVE      Event
+TALK07.EVE      Event
+TALK08.EVE      Event
+TALK09.EVE      Event
+TALK0A.EVE      Event
+TALK0B.EVE      Event
+TALK0C.EVE      Event
+TALK0D.EVE      Event
+TALK0E.EVE      Event
+TALK0F.EVE      Event
+TC_CP.BIN       ?
+TC_CPK.BIN      ?
+TC_CPKE.BIN     ?
+Z_BG.BIN        ?
+Z_CPK.BIN       ?
+Z_DEBUG.EVE     Event
+Z_GRAPH.BIN     ?
+Z_HUMAN.DAT     ?
+Z_ITEM.DAT      ?
+Z_KEY.SPR       ?
+Z_KIND.BIN      Determines which disc ID
+Z_ROLL.BIN      ?
