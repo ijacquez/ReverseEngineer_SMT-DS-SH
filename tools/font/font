@@ -1,9 +1,13 @@
 #!/usr/bin/env python
 
-import os
-import sys
-import png
+# -*- mode: python -*-
+
 import optparse
+import os
+import png
+import sys
+
+PROGNAME = os.path.basename(sys.argv[0])
 
 MIN_NUM_ARGS = 1
 
@@ -88,12 +92,10 @@ def convert(png_file, out_font_file):
     print "convert"
 
 def usage():
-    print >> sys.stderr, ("%s: [-e font-file width character-offset character-length out-png-file" \
-                              "| -c png-file out-font-file]"
-                          % (sys.argv[0]))
-    sys.exit(-1)
+    print >> sys.stderr, ("""%s: -e font-file width character-offset character-length out-png-file | -c png-file out-font-file""" % (PROGNAME))
+    return 1
 
-if __name__ == '__main__':
+def main():
     if options.extract:
         if len(args) < 5:
             usage()
@@ -104,8 +106,11 @@ if __name__ == '__main__':
                 char_length = int(args[3]), out_png_file = args[4])
     elif options.convert:
         if len(args) < 2:
-            usage()
+            return usage()
 
         convert(png_file = args[0], out_font_file = args[1])
     else:
-        usage()
+        return usage()
+
+if __name__ == '__main__':
+    sys.exit(main())

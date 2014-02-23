@@ -1,9 +1,14 @@
 #!/usr/bin/env python
 
+# -*- mode: python -*-
+
 import sys
+import os
+
+PROGNAME = os.path.basename(sys.argv[0])
 
 if (len(sys.argv) - 1) == 0:
-    print >> sys.stderr, ("%s: [hex-string] [file]" % (sys.argv[0]))
+    print >> sys.stderr, ("Usage: %s hex-string file" % (PROGNAME))
     sys.exit(0)
 
 hexstring = sys.argv[1]
